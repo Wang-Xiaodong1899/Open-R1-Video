@@ -372,39 +372,8 @@ class Qwen2VLGRPOTrainer(Trainer):
 
         # Generate completions
         with unwrap_model_for_generation(model, self.accelerator) as unwrapped_model:
-            # prompt_completion_ids = unwrapped_model.generate(**prompt_inputs, generation_config=self.generation_config)
-
-            # Generate N times, each generate one with the temp_generation_config , stack the output_ids to prompt_completion_ids, pad the empty places with number 151613
-            num_generations = self.generation_config.num_return_sequences
-            temp_generation_config = copy.deepcopy(self.generation_config)
-            temp_generation_config.num_return_sequences = 1
-
-            all_completions = []
-
-            for i in range(num_generations):  # -1 because we already have one generation
-                completion = unwrapped_model.generate(**prompt_inputs, generation_config=temp_generation_config)
-                all_completions.append(completion)
-
-            # Stack all completions and pad if needed
-            max_length = max(completion.size(1) for completion in all_completions)
-            padded_completions = []
-
-            for completion in all_completions:
-                if completion.size(1) < max_length:
-                    padding = torch.full(
-                        (completion.size(0), max_length - completion.size(1)),
-                        self.processing_class.tokenizer.pad_token_id,
-                        dtype=completion.dtype,
-                        device=completion.device,
-                    )
-                    padded_completion = torch.cat([completion, padding], dim=1)
-                else:
-                    padded_completion = completion
-                padded_completions.append(padded_completion)
-
-            # Stack all padded completions
-            prompt_completion_ids = torch.cat(padded_completions, dim=0)
-
+            prompt_completion_ids = unwrapped_model.generate(**prompt_inputs, generation_config=self.generation_config)
+            
         prompt_length = prompt_inputs["input_ids"].size(1)
         completion_ids = prompt_completion_ids[:, prompt_length:]
 
