@@ -8,6 +8,7 @@ We introduce R1's paradigm to video understanding tasks and open-sourced the tra
 > Although our insights may not be guaranteed to be correct, we commit to sharing them truthfully and honestly. We welcome community feedback and discussions to improve our understanding on multimodal reasoning models.
 
 ## News
+- **[2026/10/05]** 👋👋👋 We released and open-sourced our new work ["SimForcing: Distilling Simulation Motion Priors into Real-Domain Robot World Models"](https://arxiv.org/abs/2610.06598), a motion distillation framework for robot world models. Feel free to [check](https://github.com/Wang-Xiaodong1899/SimForcing).
 - **[2026/06/28]** 👋👋👋 We released and open-sourced our new work, extending video reasoning from text-based reasoning to **reasoning over explicit multimodal elements**, "[Incentivizing Versatile Video Reasoning in MLLMs via Data-Efficient Reinforcement Learning](https://openaccess.thecvf.com/content/CVPR2026/html/Wang_Incentivizing_Versatile_Video_Reasoning_in_MLLMs_via_Data-Efficient_Reinforcement_Learning_CVPR_2026_paper.html)" at CVPR 2026. Feel free to [check](https://github.com/Wang-Xiaodong1899/VideoReasoner).
 - [2025/02/22] We release a provisional model [Open-R1-Video-7B](https://huggingface.co/Xiaodong/Open-R1-Video-7B), inference scripts, and evaluation results.
 - [2025/02/18] We release training code and data of Open-R1-Video!
